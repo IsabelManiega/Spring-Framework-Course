@@ -1,0 +1,36 @@
+${Ansi.GREEN}                   ``````````````````````              
+${Ansi.GREEN}                `:oooooooooooooooooooooooo:`           
+${Ansi.GREEN}               .oooooooooooooooooooooooooooo.          
+${Ansi.GREEN}              -oooooooooooooooooooooooooooooo-         
+${Ansi.GREEN}             :oooooooooooooo+::ooooooooooooooo:        
+${Ansi.GREEN}            /ooooooooo++oooo   .oooo+oooooooooo/       
+${Ansi.GREEN}          `+oooooooo/.  -ooo   .ooo`  .+oooooooo+`     
+${Ansi.GREEN}         `+oooooooo.  `:oooo   .ooo+-   -oooooooo+`    
+${Ansi.GREEN}        .ooooooooo.  .oooooo   .ooooo+`  -ooooooooo.   
+${Ansi.GREEN}       .ooooooooo-  .ooooooo   .ooooooo`  /ooooooooo.  
+${Ansi.GREEN}      .oooooooooo   /ooooooo   .ooooooo:  .oooooooooo. 
+${Ansi.GREEN}      /oooooooooo   +ooooooo-  :ooooooo:  `oooooooooo/ 
+${Ansi.GREEN}      -oooooooooo.  -oooooooooooooooooo.  :oooooooooo- 
+${Ansi.GREEN}       -ooooooooo+   /oooooooooooooooo-  `oooooooooo-  
+${Ansi.GREEN}        .ooooooooo+`  .+oooooooooooo+.  `oooooooooo.   
+${Ansi.GREEN}         .oooooooooo-   .:+oooooo/:`   :oooooooooo.    
+${Ansi.GREEN}          `ooooooooooo:`            .:ooooooooooo`     
+${Ansi.GREEN}           `+oooooooooooo/:------:+oooooooooooo+`      
+${Ansi.GREEN}             /oooooooooooooooooooooooooooooooo/        
+${Ansi.GREEN}              :oooooooooooooooooooooooooooooo:         
+${Ansi.GREEN}               -oooooooooooooooooooooooooooo-          
+${Ansi.GREEN}                .+oooooooooooooooooooooooo+.           
+${Ansi.GREEN}                 `......................`     Spring Boot${spring-boot.formatted-version}
+${Ansi.GREEN}                                           
+${Ansi.GREEN}
+${Ansi.RED}   /$$$$$$                      /$$                           /$$$$$$$   /$$$$$$   /$$$$$$  /$$$$$$$$
+${Ansi.BLUE}   /$$__  $$                    |__/                          | $$__  $$ /$$__  $$ /$$__  $$|__  $$__/
+${Ansi.MAGENTA} | $$  \__/  /$$$$$$   /$$$$$$  /$$ /$$$$$$$   /$$$$$$       | $$  \ $$| $$  \ $$| $$  \ $$   | $$   
+${Ansi.RED} |  $$$$$$  /$$__  $$ /$$__  $$| $$| $$__  $$ /$$__  $$      | $$$$$$$ | $$  | $$| $$  | $$   | $$   
+${Ansi.BLUE}  \____  $$| $$  \ $$| $$  \__/| $$| $$  \ $$| $$  \ $$      | $$__  $$| $$  | $$| $$  | $$   | $$   
+${Ansi.MAGENTA}  /$$  \ $$| $$  | $$| $$      | $$| $$  | $$| $$  | $$      | $$  \ $$| $$  | $$| $$  | $$   | $$   
+${Ansi.RED} |  $$$$$$/| $$$$$$$/| $$      | $$| $$  | $$|  $$$$$$$      | $$$$$$$/|  $$$$$$/|  $$$$$$/   | $$   
+${Ansi.BLUE}  \______/ | $$____/ |__/      |__/|__/  |__/ \____  $$      |_______/  \______/  \______/    |__/   
+${Ansi.MAGENTA}           | $$                               /$$  \ $$                                              
+${Ansi.RED}           | $$                              |  $$$$$$/                                              
+${Ansi.BLUE}           |__/                               \______/                 
