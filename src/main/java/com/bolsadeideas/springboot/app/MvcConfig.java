@@ -12,6 +12,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 
 /* En SpringBoot 2.0 se cambia el WebMvcConfiguationAdapter por WebMvcConfigurer.*/
 
@@ -45,7 +46,13 @@ public class MvcConfig implements WebMvcConfigurer{
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(localeChangeInterceptor());
 	} 
-
+	
+	@Bean
+	public Jaxb2Marshaller jaxb2Marshaller() {
+		Jaxb2Marshaller marshaller =  new Jaxb2Marshaller();
+		marshaller.setClassesToBeBound(new Class[] {com.bolsadeideas.springboot.app.view.xml.ClienteList.class});
+		return marshaller;
+	}
 	
 	/*private final Logger log = LoggerFactory.getLogger(getClass());
 	@Override

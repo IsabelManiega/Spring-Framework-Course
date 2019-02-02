@@ -76,14 +76,14 @@
 			<artifactId>openpdf</artifactId>
 			<version>1.2.9</version>
 		</dependency>
-		
+
 		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi</artifactId>
 			<version>4.0.1</version>
 		</dependency>
-		
+
 		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
 		<dependency>
 			<groupId>org.apache.poi</groupId>
@@ -98,7 +98,14 @@
 			<artifactId>super-csv</artifactId>
 			<version>2.4.0</version>
 		</dependency>
-		
+
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-oxm -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-oxm</artifactId>
+			<version>5.1.4.RELEASE</version>
+		</dependency>
+
 	</dependencies>
 
 

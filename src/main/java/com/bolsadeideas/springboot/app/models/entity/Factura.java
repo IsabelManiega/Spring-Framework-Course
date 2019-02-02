@@ -21,43 +21,37 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import javax.validation.constraints.NotEmpty;
-
-/** SpringBoot 2.0 cambia la libreria de NotEmpty.
- * import org.hibernate.validator.constraints.NotEmpty;
- * Por:
- * import javax.validation.constraints.NotEmpty;
- **/
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
-@Table(name="facturas")
+@Table(name = "facturas")
 public class Factura implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@NotEmpty
 	private String descripcion;
-	
+
 	private String observacion;
-	
+
 	@Temporal(TemporalType.DATE)
-	@Column(name="create_at")
+	@Column(name = "create_at")
 	private Date createAt;
-	
-	@ManyToOne(fetch=FetchType.LAZY)/*Muchas facturas un único cliente, Lazy= carga perezosa*/
+
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Cliente cliente;
-	
-	@OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name="factura_id")
+
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name = "factura_id")
 	private List<ItemFactura> items;
-	
-			
+
 	public Factura() {
 		this.items = new ArrayList<ItemFactura>();
 	}
 
-	@PrePersist()
+	@PrePersist
 	public void prePersist() {
 		createAt = new Date();
 	}
@@ -94,6 +88,7 @@ public class Factura implements Serializable {
 		this.createAt = createAt;
 	}
 
+	@XmlTransient
 	public Cliente getCliente() {
 		return cliente;
 	}
@@ -101,8 +96,7 @@ public class Factura implements Serializable {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-	
-	
+
 	public List<ItemFactura> getItems() {
 		return items;
 	}
@@ -114,15 +108,17 @@ public class Factura implements Serializable {
 	public void addItemFactura(ItemFactura item) {
 		this.items.add(item);
 	}
-	
+
 	public Double getTotal() {
 		Double total = 0.0;
+
 		int size = items.size();
-		for (int i = 0; i<size; i++) {
+
+		for (int i = 0; i < size; i++) {
 			total += items.get(i).calcularImporte();
 		}
 		return total;
 	}
-	
+
 	private static final long serialVersionUID = 1L;
 }
