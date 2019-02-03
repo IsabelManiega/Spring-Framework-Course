@@ -28,12 +28,7 @@ public class SpringSecurityConf extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		http.authorizeRequests().antMatchers("/", "/css/**", "/js/**", "/images/**", "/listar", "/locale").permitAll()
-		/*.antMatchers("/ver/**").hasAnyRole("USER")*/
-		/*.antMatchers("/uploads/**").hasAnyRole("USER")*/
-		/*.antMatchers("/form/**").hasAnyRole("ADMIN")*/
-		/*.antMatchers("/eliminar/**").hasAnyRole("ADMIN")*/
-		/*.antMatchers("/factura/**").hasAnyRole("ADMIN")*/
+		http.authorizeRequests().antMatchers("/", "/css/**", "/js/**", "/images/**", "/listar**", "/locale", "/api/clientes/**").permitAll()
 		.anyRequest().authenticated()
 		.and()
 		    .formLogin()
@@ -52,7 +47,5 @@ public class SpringSecurityConf extends WebSecurityConfigurerAdapter{
 	{
 		build.userDetailsService(userDetailsService)
 		.passwordEncoder(passwordEncoder);
-
 	}
 }
-
