@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "facturas_items")
 public class ItemFactura implements Serializable {
@@ -23,6 +25,7 @@ public class ItemFactura implements Serializable {
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="producto_id")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private Producto producto;
 
 	public Long getId() {
@@ -48,9 +51,11 @@ public class ItemFactura implements Serializable {
 	public void setProducto(Producto producto) {
 		this.producto = producto;
 	}
+
+	public Double calcularImporte() {
+		return cantidad.doubleValue() * producto.getPrecio();
+	}
 	
-    public Double calcularImporte() {
-    	return cantidad.doubleValue() * producto.getPrecio();
-    }
 	private static final long serialVersionUID = 1L;
+
 }

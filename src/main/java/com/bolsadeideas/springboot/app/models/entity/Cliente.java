@@ -22,13 +22,9 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
-/** SpringBoot 2.0 cambia la libreria de NotEmpty e Email.
- * import org.hibernate.validator.constraints.Email;
- * import org.hibernate.validator.constraints.NotEmpty;
- * Por:
- * import javax.validation.constraints.Email;
- * import javax.validation.constraints.NotEmpty;
- **/
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "clientes")
 public class Cliente implements Serializable {
@@ -39,24 +35,25 @@ public class Cliente implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotEmpty /* obligatorio añadir el campo */
+	@NotEmpty
 	private String nombre;
-
-	@NotEmpty /* obligatorio añadir el campo */
+	
+	@NotEmpty
 	private String apellido;
-
-	@NotEmpty /* obligatorio añadir el campo */
-	@Email /* con formato de email */
+	
+	@NotEmpty
+	@Email
 	private String email;
 
-	@NotNull /* con formato no nulo */
+	@NotNull
 	@Column(name = "create_at")
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "yyyy-MM-dd") /* formato de fecha */
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date createAt;
-
-	/*Un cliente muchas facturas, Lazy= única consulta, cascade= relación con sus elemtos hijos*/
-	@OneToMany(mappedBy= "cliente", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+	
+	@OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonManagedReference
 	private List<Factura> facturas;
 	
 	public Cliente() {
@@ -64,7 +61,7 @@ public class Cliente implements Serializable {
 	}
 
 	private String foto;
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -120,7 +117,7 @@ public class Cliente implements Serializable {
 	public void setFacturas(List<Factura> facturas) {
 		this.facturas = facturas;
 	}
-
+	
 	public void addFactura(Factura factura) {
 		facturas.add(factura);
 	}
@@ -129,6 +126,5 @@ public class Cliente implements Serializable {
 	public String toString() {
 		return nombre + " " + apellido;
 	}
-	
-	
+
 }
