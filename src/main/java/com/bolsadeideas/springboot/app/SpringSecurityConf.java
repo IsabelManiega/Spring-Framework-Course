@@ -5,19 +5,23 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.bolsadeideas.springboot.app.auth.handler.LoginSuccessHandler;
+import com.bolsadeideas.springboot.app.auth.filter.JWTAuthenticationFilter;
+import com.bolsadeideas.springboot.app.auth.filter.JWTAuthorizationFilter;
+import com.bolsadeideas.springboot.app.auth.service.JWTService;
+//import com.bolsadeideas.springboot.app.auth.handler.LoginSuccessHandler;
 import com.bolsadeideas.springboot.app.models.service.JpaUserDetailsService;
 
 @EnableGlobalMethodSecurity(securedEnabled=true, prePostEnabled=true)
 @Configuration
 public class SpringSecurityConf extends WebSecurityConfigurerAdapter{
-
+/*
 	@Autowired
-	private LoginSuccessHandler successHandler;
+	private LoginSuccessHandler successHandler;*/
 	
 	@Autowired
 	private JpaUserDetailsService userDetailsService;
@@ -25,11 +29,15 @@ public class SpringSecurityConf extends WebSecurityConfigurerAdapter{
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 	
+	@Autowired
+	private JWTService jwtService;
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		http.authorizeRequests().antMatchers("/", "/css/**", "/js/**", "/images/**", "/listar**", "/locale", "/api/clientes/**").permitAll()
+		http.authorizeRequests().antMatchers("/", "/css/**", "/js/**", "/images/**", "/listar**", "/locale").permitAll()
 		.anyRequest().authenticated()
+		/*
 		.and()
 		    .formLogin()
 		        .successHandler(successHandler)
@@ -38,7 +46,12 @@ public class SpringSecurityConf extends WebSecurityConfigurerAdapter{
 		.and()
 		.logout().permitAll()
 		.and()
-		.exceptionHandling().accessDeniedPage("/error_403");
+		.exceptionHandling().accessDeniedPage("/error_403");*/
+		.and()
+		.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtService))
+		.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtService))
+		.csrf().disable()
+		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
 	}
 
